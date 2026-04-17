@@ -37,6 +37,14 @@ cd shelltools
 
 ## Usage
 
+### Copy-paste command
+
+In a project directory that contains `requirements.txt`, run this directly:
+
+```sh
+curl -fsSL https://raw.githubusercontent.com/ColaHikari/shelltools/main/bin/req2pyproject.sh | sh -s -- --backup
+```
+
 ### Auto-detection mode
 
 Runs with defaults, scanning the current directory for `requirements.txt` or `pyproject.toml`:
@@ -103,6 +111,7 @@ The tool parses `requirements.txt` and extracts packages into PEP 621 `[project]
 |------|---------|
 | 0 | Success |
 | 1 | General error |
+
 ## Requirements
 
 - POSIX-compliant shell (`sh`, `dash`, `bash`, `zsh` in sh-compatible mode)
