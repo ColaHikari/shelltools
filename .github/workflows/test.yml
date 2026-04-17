@@ -1,0 +1,42 @@
+name: Test
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+
+jobs:
+  shellcheck:
+    name: Lint shell script
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install shellcheck
+        run: |
+          if ! command -v shellcheck &> /dev/null; then
+            apt-get update && apt-get install -y shellcheck
+          fi
+          shellcheck --version
+
+      - name: Run shellcheck on main script
+        run: shellcheck bin/req2pyproject.sh
+
+  test:
+    name: Run test harness
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install shellcheck
+        run: |
+          if ! command -v shellcheck &> /dev/null; then
+            apt-get update && apt-get install -y shellcheck
+          fi
+
+      - name: Run shellcheck
+        run: shellcheck bin/req2pyproject.sh
+
+      - name: Run test suite
+        run: sh test/test_req2pyproject.sh
