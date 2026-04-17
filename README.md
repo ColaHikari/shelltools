@@ -20,17 +20,17 @@
 
 ```sh
 # Download and run directly from raw GitHub
-curl -fsSL https://raw.githubusercontent.com/<your-user>/shelltools/main/bin/req2pyproject.sh | sh -s -- --help
+curl -fsSL https://raw.githubusercontent.com/ColaHikari/shelltools/main/bin/req2pyproject.sh | sh -s -- --help
 
 # Or save to a local path and run
-curl -fsSL https://raw.githubusercontent.com/<your-user>/shelltools/main/bin/req2pyproject.sh -o /usr/local/bin/req2pyproject
+curl -fsSL https://raw.githubusercontent.com/ColaHikari/shelltools/main/bin/req2pyproject.sh -o /usr/local/bin/req2pyproject
 chmod +x /usr/local/bin/req2pyproject
 ```
 
 ### From cloned repository
 
 ```sh
-git clone https://github.com/<your-user>/shelltools.git
+git clone https://github.com/ColaHikari/shelltools.git
 cd shelltools
 ./bin/req2pyproject.sh --help
 ```
