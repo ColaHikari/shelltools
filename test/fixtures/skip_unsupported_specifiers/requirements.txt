@@ -1,0 +1,4 @@
+flask>=2.0
+requests[security]==2.31.0
+-e .
+git+https://example.com/pkg.git
