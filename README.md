@@ -92,6 +92,7 @@ The tool parses `requirements.txt` and extracts packages into PEP 621 `[project]
 **Supported:**
 
 - Package names with versions: `requests>=2.28.0`
+- Version ranges: `pycryptodome>=3.19,<4`
 - Package names only: `pytest`
 - Hyphenated names: `some-package`
 - Underscore names: `some_package`
@@ -139,6 +140,6 @@ shellcheck bin/req2pyproject.sh && sh test/test_req2pyproject.sh
 - Only reads and writes `[project].dependencies` in `pyproject.toml`
 - Does not modify `[project.optional-dependencies]` or other tables
 - Does not support Poetry-style `tool.poetry.dependencies`
-- Supports only simple requirement forms such as `name`, `name==1.2.3`, `name>=1.0`, `name~=2.0`
+- Supports simple requirement forms such as `name`, `name==1.2.3`, `name>=1.0`, `name~=2.0`, `name>=1.0,<2`
 - Does not install or manage packages
 - Does not handle requirements with extras, environment markers, local paths, or URLs
