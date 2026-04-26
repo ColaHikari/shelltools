@@ -69,7 +69,7 @@ cleanup() {
 trap cleanup EXIT HUP INT TERM
 
 normalize_requirement() {
-    printf '%s\n' "$1" | sed 's/[[:space:]]*\(==\|>=\|<=\|~=\|>\|<\)[[:space:]]*/\1/g'
+    printf '%s\n' "$1" | sed 's/[[:space:]]*\(==\|>=\|<=\|~=\|!=\|>\|<\)[[:space:]]*/\1/g; s/[[:space:]]*,[[:space:]]*/,/g'
 }
 
 parse_requirements() {
@@ -86,8 +86,9 @@ parse_requirements() {
 
         line=$(printf '%s\n' "$line" | sed 's/[[:space:]]\{1,\}#.*$//')
         normalized=$(normalize_requirement "$line")
+        version_part='(==|!=|>=|<=|~=|>|<)[A-Za-z0-9*_.!+-]+'
 
-        if printf '%s\n' "$normalized" | grep -Eq '^[A-Za-z0-9_.-]+((==|>=|<=|~=|>|<)[A-Za-z0-9*_.+-]+)?$'; then
+        if printf '%s\n' "$normalized" | grep -Eq "^[A-Za-z0-9_.-]+($version_part(,$version_part)*)?$"; then
             printf '  "%s",\n' "$normalized" >> "$deps_items_file"
         else
             warn "skipping unsupported requirement line: $raw_line"

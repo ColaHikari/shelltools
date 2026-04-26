@@ -93,6 +93,9 @@ test_skip_unsupported_specifiers() {
     )
 
     assert_file_contains "$workspace/pyproject.toml" '"flask>=2.0",'
+    assert_file_contains "$workspace/pyproject.toml" '"pycryptodome>=3.19,<4",'
+    assert_file_contains "$workspace/pyproject.toml" '"zstandard>=0.22,<1",'
+    assert_file_contains "$workspace/pyproject.toml" '"mcp>=1.0,<2",'
     assert_file_not_contains "$workspace/pyproject.toml" 'requests[security]'
     assert_file_not_contains "$workspace/pyproject.toml" 'git+https://example.com/pkg.git'
     warning_count=$(grep -c '^warning: skipping unsupported requirement line:' "$stderr_file")
